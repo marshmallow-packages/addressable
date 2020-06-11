@@ -1,0 +1,36 @@
+{
+    "name": "marshmallow/addressable",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "keywords": ["marshmallow"],
+    "homepage": "https://github.com/Marshmallow-Development/",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Stef",
+            "email": "stef@marshmallow.dev",
+            "homepage": "https://marshmallow.dev",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "email": "stef@marshmallow.dev"
+    },
+    "minimum-stability": "dev",
+    "require": {
+        "php": "^7.4",
+        "spatie/laravel-sluggable": "^2.4",
+        "marshmallow/dataset-country": "^1.0",
+        "marshmallow/commands": "^1.0"
+    },
+    "autoload": {
+        "psr-4": {"Marshmallow\\Addressable\\": "src"}
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Marshmallow\\Addressable\\ServiceProvider"
+            ]
+        }
+    }
+}
