@@ -42,7 +42,7 @@ class AddressType extends Resource
     {
         return [
             Text::make('Name')->sortable()->required(),
-            Trix::make('Description'),
+            config('addressable.wysiwyg')::make('Description'),
         ];
     }
 
