@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Marshmallow\Addressable\Models\AddressType;
 
 /**
- * php artisan db:seed --class=Marshmallow\\Addressable\\Database\\Seeds\\AddressTypeSeeder
+ * php artisan db:seed --class=Marshmallow\\Addressable\\Seeders\\AddressTypeSeeder
  */
 
 class AddressTypeSeeder extends Seeder
