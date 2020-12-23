@@ -26,6 +26,7 @@ class CreateAddressesTable extends Migration
             $table->id();
             $table->morphs('addressable');
             $table->unsignedBigInteger('address_type_id');
+            $table->boolean('default')->default(false);
             $table->string('name')->nullable()->default(null);
             $table->string('address_line_1')->nullable()->default(null);
             $table->string('address_line_2')->nullable()->default(null);
