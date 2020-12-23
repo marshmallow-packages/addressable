@@ -20,7 +20,7 @@ Are you using Nova? We have a command for you to generate the Nova Resource. Run
 
 Run the seeder if you wish to have some defaults in the address type table. This will create a type of `Shipping address` and a type of `Postal address`. These types will be added to your database in your setup locale. Currently we only support English and Dutch for seeding these records.
 ```
-php artisan db:seed --class=Marshmallow\\Addressable\\Database\\Seeds\\AddressTypeSeeder
+php artisan db:seed --class=Marshmallow\\Addressable\\Seeders\\AddressTypeSeeder
 ```
 
 To make the address visable on your Nova resource, you need to add `MorphMany::make('Addresses'),` to your `fields()` method.

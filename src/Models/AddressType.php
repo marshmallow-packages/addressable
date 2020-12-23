@@ -9,11 +9,11 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class AddressType extends Model
 {
-	use HasSlug, SoftDeletes;
+    use HasSlug, SoftDeletes;
 
-	protected $guarded = [];
+    protected $guarded = [];
 
-	/**
+    /**
      * Get the options for generating the slug.
      */
     public function getSlugOptions(): SlugOptions

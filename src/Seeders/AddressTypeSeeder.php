@@ -12,8 +12,9 @@ use Marshmallow\Addressable\Models\AddressType;
 class AddressTypeSeeder extends Seeder
 {
     protected $default_address_types = [
-        'Shipping address', 'Postal address'
+        'Shipping address', 'Postal address',
     ];
+
     /**
      * Run the database seeds.
      *
