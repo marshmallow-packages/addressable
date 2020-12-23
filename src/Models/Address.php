@@ -5,7 +5,6 @@ namespace Marshmallow\Addressable\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Marshmallow\Addressable\Models\AddressType;
 use Marshmallow\Datasets\Country\Models\Country;
 
 class Address extends Model
@@ -20,7 +19,7 @@ class Address extends Model
             $has_default = self::sameOwner($address)
                                 ->default()
                                 ->first();
-            if (!$has_default) {
+            if (! $has_default) {
                 $address->makeDefault();
             }
         });
