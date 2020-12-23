@@ -4,27 +4,26 @@ namespace Marshmallow\Addressable\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Marshmallow\Addressable\Models\AddressType;
 use Marshmallow\Datasets\Country\Models\Country;
 
 class Address extends Model
 {
-	use SoftDeletes;
+    use SoftDeletes;
 
-	protected $guarded = [];
+    protected $guarded = [];
 
-	public function country()
-	{
-		return $this->belongsTo(Country::class);
-	}
+    public function country()
+    {
+        return $this->belongsTo(Country::class);
+    }
 
-	public function addressType()
-	{
-		return $this->belongsTo(AddressType::class);
-	}
+    public function addressType()
+    {
+        return $this->belongsTo(AddressType::class);
+    }
 
-	public function addressable()
-	{
-		return $this->morphTo();
-	}
+    public function addressable()
+    {
+        return $this->morphTo();
+    }
 }

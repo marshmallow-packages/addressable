@@ -6,7 +6,7 @@ use Marshmallow\Addressable\Models\Address;
 
 trait Addressable
 {
-	public function addresses()
+    public function addresses()
     {
         return $this->morphMany(Address::class, 'addressable');
     }

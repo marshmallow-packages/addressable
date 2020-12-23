@@ -5,7 +5,6 @@ namespace Marshmallow\Addressable\Nova;
 use App\Nova\Resource;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Trix;
 
 class AddressType extends Resource
 {

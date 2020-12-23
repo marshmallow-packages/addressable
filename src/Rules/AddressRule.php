@@ -7,6 +7,7 @@ use Illuminate\Contracts\Validation\Rule;
 class AddressRule implements Rule
 {
     protected $message;
+
     /**
      * Create a new rule instance.
      *
