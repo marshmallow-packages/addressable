@@ -12,7 +12,14 @@ use Marshmallow\Addressable\Models\AddressType;
 class AddressTypeSeeder extends Seeder
 {
     protected $default_address_types = [
-        'Shipping address', 'Postal address',
+        [
+            'name' => 'Shipping address',
+            'type' => 'SHIPPING',
+        ],
+        [
+            'name' => 'Invoice address',
+            'type' => 'INVOICE',
+        ],
     ];
 
     /**
@@ -23,13 +30,14 @@ class AddressTypeSeeder extends Seeder
     public function run()
     {
         foreach ($this->default_address_types as $type) {
-            $translated = trans('addressable::address_types.' . $type);
-            if (AddressType::where('name', $translated)->first()) {
+
+            if (AddressType::where('name', $type['name'])->first()) {
                 continue;
             }
 
             AddressType::create([
-                'name' => $translated,
+                'name' => $type['name'],
+                'type' => $type['type'],
             ]);
         }
     }
