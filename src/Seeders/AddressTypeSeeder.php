@@ -14,11 +14,11 @@ class AddressTypeSeeder extends Seeder
     protected $default_address_types = [
         [
             'name' => 'Shipping address',
-            'type' => 'SHIPPING',
+            'type' => AddressType::SHIPPING,
         ],
         [
             'name' => 'Invoice address',
-            'type' => 'INVOICE',
+            'type' => AddressType::INVOICE,
         ],
     ];
 

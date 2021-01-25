@@ -11,6 +11,9 @@ class AddressType extends Model
 {
     use HasSlug, SoftDeletes;
 
+    public const SHIPPING = 'SHIPPING';
+    public const INVOICE = 'INVOICE';
+
     protected $guarded = [];
 
     /**
