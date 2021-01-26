@@ -38,6 +38,21 @@ class Address extends Model
         });
     }
 
+    public function getAsString()
+    {
+        $parts = [
+            $this->address_line_1,
+            $this->address_line_2,
+            $this->postal_code,
+            $this->city,
+            $this->state,
+        ];
+
+        $parts = array_filter($parts);
+
+        return join(', ', $parts);
+    }
+
     public function makeDefault()
     {
         $defaults = self::sameOwner($this)
