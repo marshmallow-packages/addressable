@@ -15,21 +15,27 @@ class Address extends Model
 
     protected static function booted()
     {
+        self::creating(function ($address) {
+            if (!$address->address_type_id) {
+                $address->address_type_id = config('addressable.default_address_type');
+            }
+        });
+
         self::created(function ($address) {
             $has_default = self::sameOwner($address)
-                                ->default()
-                                ->first();
-            if (! $has_default) {
+                ->default()
+                ->first();
+            if (!$has_default) {
                 $address->makeDefault();
             }
         });
 
         self::deleted(function ($address) {
             $has_default = self::sameOwner($address)
-                                ->notThisOne($address)
-                                ->default()
-                                ->first();
-            if (! $has_default) {
+                ->notThisOne($address)
+                ->default()
+                ->first();
+            if (!$has_default) {
                 $first_result = self::sameOwner($address)->notThisOne($address)->first();
                 if ($first_result) {
                     $first_result->makeDefault();
@@ -56,8 +62,8 @@ class Address extends Model
     public function makeDefault()
     {
         $defaults = self::sameOwner($this)
-                        ->default()
-                        ->get();
+            ->default()
+            ->get();
 
         foreach ($defaults as $default) {
             $default->update([
@@ -78,8 +84,8 @@ class Address extends Model
     public function scopeSameOwner(Builder $builder, Model $owner)
     {
         $builder->where('addressable_type', $owner->addressable_type)
-                ->where('addressable_id', $owner->addressable_id)
-                ->where('address_type_id', $owner->address_type_id);
+            ->where('addressable_id', $owner->addressable_id)
+            ->where('address_type_id', $owner->address_type_id);
     }
 
     public function scopeDefault(Builder $builder)

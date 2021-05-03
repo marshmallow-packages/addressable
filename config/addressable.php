@@ -1,5 +1,5 @@
 <?php
 
 return [
-	'wysiwyg' => env('NOVA_WYSIWYG', \Laravel\Nova\Fields\Trix::class),
+    'default_address_type' => 5,
 ];
