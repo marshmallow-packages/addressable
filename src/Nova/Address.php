@@ -8,6 +8,7 @@ use Laravel\Nova\Fields\Text;
 use Laravel\Nova\Fields\Place;
 use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\BelongsTo;
+use Marshmallow\Addressable\Addresses;
 
 class Address extends Resource
 {
@@ -46,18 +47,18 @@ class Address extends Resource
     {
         return [
             MorphTo::make('Addressable', 'addressable')->onlyOnDetail(),
-            BelongsTo::make('Address type', 'addressType'),
-            Text::make('Name')->help(
-                'This can be used as a reference for this address. For instance this could say: "Home" or "Office"'
+            BelongsTo::make(__('Address type'), 'addressType', Addresses::$addressTypeModel),
+            Text::make(__('Name'))->help(
+                __('This can be used as a reference for this address. For instance this could say: "Home" or "Office"')
             ),
-            Place::make('Address', 'address_line_1'),
-            Text::make('Address Line 2')->hideFromIndex(),
-            Text::make('City'),
-            Text::make('State')->hideFromIndex(),
-            Text::make('Postal Code')->hideFromIndex(),
-            BelongsTo::make('Country'),
-            Text::make('Latitude')->hideFromIndex(),
-            Text::make('Longitude')->hideFromIndex(),
+            Place::make(__('Address'), 'address_line_1'),
+            Text::make(__('Address Line 2'), 'address_line_2')->hideFromIndex(),
+            Text::make(__('City'), 'city'),
+            Text::make(__('State'), 'state')->hideFromIndex(),
+            Text::make(__('Postal Code'), 'postal_code')->hideFromIndex(),
+            BelongsTo::make(__('Country'), 'country', Addresses::$countryModel),
+            Text::make(__('Latitude'), 'latitude')->hideFromIndex(),
+            Text::make(__('Longitude'), 'longitude')->hideFromIndex(),
         ];
     }
 
