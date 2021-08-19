@@ -2,10 +2,10 @@
 
 namespace Marshmallow\Addressable\Models;
 
+use Marshmallow\Addressable\Addresses;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Marshmallow\Datasets\Country\Models\Country;
 
 class Address extends Model
 {
@@ -100,12 +100,12 @@ class Address extends Model
 
     public function country()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Addresses::$countryModel);
     }
 
     public function addressType()
     {
-        return $this->belongsTo(AddressType::class);
+        return $this->belongsTo(Addresses::$addressTypeModel);
     }
 
     public function addressable()
