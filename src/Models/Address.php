@@ -101,7 +101,8 @@ class Address extends Model
 
     public function country()
     {
-        return $this->belongsTo(Addresses::$countryModel);
+        return $this->setConnection(Addresses::$countryConnection)
+            ->belongsTo(Addresses::$countryModel);
     }
 
     public function addressType()

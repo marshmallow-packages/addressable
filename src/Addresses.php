@@ -11,4 +11,6 @@ class Addresses
     public static $addressModel = Address::class;
     public static $countryModel = Country::class;
     public static $addressTypeModel = AddressType::class;
+
+    public static $countryConnection = null;
 }
