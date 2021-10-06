@@ -2,6 +2,7 @@
 
 namespace Marshmallow\Addressable\Models;
 
+use Marshmallow\Addressable\Addresses;
 use Illuminate\Database\Eloquent\Model;
 use Marshmallow\Addressable\Addressable;
 use Illuminate\Database\Eloquent\Builder;
@@ -15,6 +16,12 @@ class Address extends Model
 
     protected static function booted()
     {
+        self::creating(function ($address) {
+            if (!$address->address_type_id) {
+                $address->address_type_id = config('addressable.default_address_type');
+            }
+        });
+
         self::created(function ($address) {
             $has_default = self::sameOwner($address)
                 ->default()
@@ -94,12 +101,12 @@ class Address extends Model
 
     public function country()
     {
-        return $this->belongsTo(Addressable::$countryModel);
+        return $this->belongsTo(Addresses::$countryModel);
     }
 
     public function addressType()
     {
-        return $this->belongsTo(Addressable::$addressTypeModel);
+        return $this->belongsTo(Addresses::$addressTypeModel);
     }
 
     public function addressable()

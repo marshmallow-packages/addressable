@@ -3,7 +3,7 @@
 namespace Marshmallow\Addressable\Seeders;
 
 use Illuminate\Database\Seeder;
-use Marshmallow\Addressable\Models\AddressType;
+use Marshmallow\Addressable\Addresses;
 
 /**
  * php artisan db:seed --class=Marshmallow\\Addressable\\Seeders\\AddressTypeSeeder
@@ -11,17 +11,6 @@ use Marshmallow\Addressable\Models\AddressType;
 
 class AddressTypeSeeder extends Seeder
 {
-    protected $default_address_types = [
-        [
-            'name' => 'Shipping address',
-            'type' => AddressType::SHIPPING,
-        ],
-        [
-            'name' => 'Invoice address',
-            'type' => AddressType::INVOICE,
-        ],
-    ];
-
     /**
      * Run the database seeds.
      *
@@ -29,13 +18,24 @@ class AddressTypeSeeder extends Seeder
      */
     public function run()
     {
-        foreach ($this->default_address_types as $type) {
+        $default_address_types = [
+            [
+                'name' => 'Shipping address',
+                'type' => Addresses::$addressTypeModel::SHIPPING,
+            ],
+            [
+                'name' => 'Invoice address',
+                'type' => Addresses::$addressTypeModel::INVOICE,
+            ],
+        ];
 
-            if (AddressType::where('name', $type['name'])->first()) {
+        foreach ($default_address_types as $type) {
+
+            if (Addresses::$addressTypeModel::where('name', $type['name'])->first()) {
                 continue;
             }
 
-            AddressType::create([
+            Addresses::$addressTypeModel::create([
                 'name' => $type['name'],
                 'type' => $type['type'],
             ]);

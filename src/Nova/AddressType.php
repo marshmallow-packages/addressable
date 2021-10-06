@@ -40,8 +40,8 @@ class AddressType extends Resource
     public function fields(Request $request)
     {
         return [
-            Text::make('Name')->sortable()->required(),
-            config('addressable.wysiwyg')::make('Description'),
+            Text::make(__('Name'), 'name')->sortable()->required(),
+            config('addressable.wysiwyg')::make(__('Description'), 'description'),
         ];
     }
 
