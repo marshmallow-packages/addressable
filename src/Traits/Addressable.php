@@ -3,7 +3,7 @@
 namespace Marshmallow\Addressable\Traits;
 
 use Marshmallow\Addressable\Models\Address;
-use Marshmallow\Addressable\Models\AddressType;
+use Marshmallow\Addressable\Addressable as BaseAddressable;
 
 trait Addressable
 {
@@ -14,7 +14,7 @@ trait Addressable
 
     public function getDefaultAddress(string $type)
     {
-        $type = AddressType::where('type', $type)->firstOrFail();
+        $type = BaseAddressable::$addressTypeModel::where('type', $type)->firstOrFail();
         return $this->addresses()->whereType($type)->default()->first();
     }
 }

@@ -3,9 +3,9 @@
 namespace Marshmallow\Addressable\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Marshmallow\Addressable\Addressable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Marshmallow\Datasets\Country\Models\Country;
 
 class Address extends Model
 {
@@ -17,19 +17,19 @@ class Address extends Model
     {
         self::created(function ($address) {
             $has_default = self::sameOwner($address)
-                                ->default()
-                                ->first();
-            if (! $has_default) {
+                ->default()
+                ->first();
+            if (!$has_default) {
                 $address->makeDefault();
             }
         });
 
         self::deleted(function ($address) {
             $has_default = self::sameOwner($address)
-                                ->notThisOne($address)
-                                ->default()
-                                ->first();
-            if (! $has_default) {
+                ->notThisOne($address)
+                ->default()
+                ->first();
+            if (!$has_default) {
                 $first_result = self::sameOwner($address)->notThisOne($address)->first();
                 if ($first_result) {
                     $first_result->makeDefault();
@@ -56,8 +56,8 @@ class Address extends Model
     public function makeDefault()
     {
         $defaults = self::sameOwner($this)
-                        ->default()
-                        ->get();
+            ->default()
+            ->get();
 
         foreach ($defaults as $default) {
             $default->update([
@@ -78,8 +78,8 @@ class Address extends Model
     public function scopeSameOwner(Builder $builder, Model $owner)
     {
         $builder->where('addressable_type', $owner->addressable_type)
-                ->where('addressable_id', $owner->addressable_id)
-                ->where('address_type_id', $owner->address_type_id);
+            ->where('addressable_id', $owner->addressable_id)
+            ->where('address_type_id', $owner->address_type_id);
     }
 
     public function scopeDefault(Builder $builder)
@@ -94,12 +94,12 @@ class Address extends Model
 
     public function country()
     {
-        return $this->belongsTo(Country::class);
+        return $this->belongsTo(Addressable::$countryModel);
     }
 
     public function addressType()
     {
-        return $this->belongsTo(AddressType::class);
+        return $this->belongsTo(Addressable::$addressTypeModel);
     }
 
     public function addressable()
