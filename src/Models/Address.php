@@ -4,6 +4,7 @@ namespace Marshmallow\Addressable\Models;
 
 use Marshmallow\Addressable\Addresses;
 use Illuminate\Database\Eloquent\Model;
+use Marshmallow\Addressable\Addressable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
@@ -100,7 +101,8 @@ class Address extends Model
 
     public function country()
     {
-        return $this->belongsTo(Addresses::$countryModel);
+        return $this->setConnection(Addresses::$countryConnection)
+            ->belongsTo(Addresses::$countryModel);
     }
 
     public function addressType()
