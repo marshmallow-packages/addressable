@@ -2,12 +2,11 @@
 
 namespace Marshmallow\Addressable\Rules;
 
-use Illuminate\Contracts\Validation\Rule;
+use Illuminate\Contracts\Validation\ValidationRule;
+use Closure;
 
-class AddressRule implements Rule
+class AddressRule implements ValidationRule
 {
-    protected $message;
-
     /**
      * Create a new rule instance.
      *
@@ -19,24 +18,16 @@ class AddressRule implements Rule
     }
 
     /**
-     * Determine if the validation rule passes.
+     * Run the validation rule.
      *
      * @param  string  $attribute
      * @param  mixed  $value
-     * @return bool
+     * @param  \Closure  $fail
+     * @return void
      */
-    public function passes($attribute, $value)
+    public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        return true;
-    }
-
-    /**
-     * Get the validation error message.
-     *
-     * @return string
-     */
-    public function message()
-    {
-        return $this->message;
+        // Validation logic here - currently always passes
+        // If validation fails, call: $fail('Validation error message')
     }
 }

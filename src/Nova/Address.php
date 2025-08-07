@@ -5,7 +5,6 @@ namespace Marshmallow\Addressable\Nova;
 use App\Nova\Resource;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\Text;
-use Laravel\Nova\Fields\Place;
 use Laravel\Nova\Fields\MorphTo;
 use Laravel\Nova\Fields\BelongsTo;
 use Marshmallow\Addressable\Addresses;
@@ -51,7 +50,7 @@ class Address extends Resource
             Text::make(__('Name'))->help(
                 __('This can be used as a reference for this address. For instance this could say: "Home" or "Office"')
             ),
-            Place::make(__('Address'), 'address_line_1'),
+            Text::make(__('Address'), 'address_line_1'),
             Text::make(__('Address Line 2'), 'address_line_2')->hideFromIndex(),
             Text::make(__('City'), 'city'),
             Text::make(__('State'), 'state')->hideFromIndex(),

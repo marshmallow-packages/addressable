@@ -2,9 +2,9 @@
 
 namespace Marshmallow\Addressable\Policies;
 
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class AddressPolicy
 {
@@ -13,10 +13,10 @@ class AddressPolicy
     /**
      * Determine whether the user can view any support tickets.
      *
-     * @param  \App\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @return mixed
      */
-    public function viewAny(User $user)
+    public function viewAny(Authenticatable $user)
     {
         return true;
     }
@@ -24,11 +24,11 @@ class AddressPolicy
     /**
      * Determine whether the user can view the support ticket.
      *
-     * @param  \App\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return mixed
      */
-    public function view(User $user, Model $model)
+    public function view(Authenticatable $user, Model $model)
     {
         return true;
     }
@@ -36,10 +36,10 @@ class AddressPolicy
     /**
      * Determine whether the user can create support tickets.
      *
-     * @param  \App\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @return mixed
      */
-    public function create(User $user)
+    public function create(Authenticatable $user)
     {
         return true;
     }
@@ -47,11 +47,11 @@ class AddressPolicy
     /**
      * Determine whether the user can update the support ticket.
      *
-     * @param  \App\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return mixed
      */
-    public function update(User $user, Model $model)
+    public function update(Authenticatable $user, Model $model)
     {
         return true;
     }
@@ -59,11 +59,11 @@ class AddressPolicy
     /**
      * Determine whether the user can delete the support ticket.
      *
-     * @param  \App\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return mixed
      */
-    public function delete(User $user, Model $model)
+    public function delete(Authenticatable $user, Model $model)
     {
         return true;
     }
@@ -71,11 +71,11 @@ class AddressPolicy
     /**
      * Determine whether the user can restore the support ticket.
      *
-     * @param  \App\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return mixed
      */
-    public function restore(User $user, Model $model)
+    public function restore(Authenticatable $user, Model $model)
     {
         return true;
     }
@@ -83,11 +83,11 @@ class AddressPolicy
     /**
      * Determine whether the user can permanently delete the support ticket.
      *
-     * @param  \App\User  $user
+     * @param  \Illuminate\Contracts\Auth\Authenticatable  $user
      * @param  \Illuminate\Database\Eloquent\Model  $model
      * @return mixed
      */
-    public function forceDelete(User $user, Model $model)
+    public function forceDelete(Authenticatable $user, Model $model)
     {
         return true;
     }
